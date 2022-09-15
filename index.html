@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Obliczki</title>
+    <style>
+      body {
+        width: 20%;
+        margin-left: 2em;
+      }
+      label {
+        display: block;
+        margin: 0.5em;
+      }
+      fieldset {
+        width: 50%;
+        margin: 1em auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Obliczki</h1>
+    <form action="#">
+      <label for="num1"
+        >Liczba 1
+        <input type="number" name="num1" id="num1" value="12" />
+      </label>
+      <label for="num2"
+        >Liczba 2
+        <input type="number" name="num2" id="num2" value="3" />
+      </label>
+      <fieldset>
+        <legend>Działanie</legend>
+        <label for="oper1">
+          suma <input type="radio" name="oper" id="oper1" value="+" /></label
+        ><label for="oper2"
+          >różnica
+          <input type="radio" name="oper" id="oper1" value="-" /></label
+        ><label for="oper3"
+          >iloczyn
+          <input type="radio" name="oper" id="oper1" value="*" /></label
+        ><label for="oper4"
+          >iloraz <input type="radio" name="oper" id="oper1" value="/"
+        /></label>
+      </fieldset>
+      <input type="submit" value="Licz" />
+    </form>
+    <p id="result"></p>
+    <script>
+      const num1 = document.querySelector("#num1");
+      const num2 = document.querySelector("#num2");
+      const operators = document.querySelectorAll('[name = "oper"]');
+      const btn = document.querySelector('[type="submit"]');
+      const resultP = document.querySelector("#result");
+      console.log(operators);
+
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        num1Val = parseInt(num1.value);
+        num2Val = parseInt(num2.value);
+        operators.forEach(function (elem) {
+          if (elem.checked) {
+            const oper = elem.value;
+            let result;
+            switch (oper) {
+              case "+":
+                result = `wynik dodawania: ${num1Val + num2Val}`;
+                break;
+              case "-":
+                result = `wynik dodawania: ${num1Val - num2Val}`;
+                break;
+              case "*":
+                result = `wynik dodawania: ${num1Val * num2Val}`;
+                break;
+              case "/":
+                result = `wynik dodawania: ${num1Val / num2Val}`;
+                break;
+
+              default:
+                result = "błąd";
+                break;
+            }
+            resultP.innerHTML = result;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
